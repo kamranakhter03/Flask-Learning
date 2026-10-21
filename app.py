@@ -2,6 +2,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
+# Static Routing
+
 @app.route("/")
 def home():
     return "Welcome to our Home Page"
