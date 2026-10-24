@@ -1,40 +1,29 @@
-from flask import Flask
+from flask import Flask, request
 from uuid import UUID
 
 app = Flask(__name__)
 
-# Static Routing
-@app.route("/")
-def home():
-    return "Welcome to our Home Page"
+# Query Parameter
 
-# URL Converters
+@app.route("/search")
+def search():
+    name = request.args.get("name")
+    return f"Hello {name}"
 
-# int converter
-@app.route("/user/<int:id>")
-def user_id(id):
-    return f"User ID: {id}"
 
-# float converter
-@app.route("/price/<float:amount>")
-def price(amount):
-    return f"Price: {amount}"
+# Query Parameter with default Value "Guest"
+@app.route("/student")
+def student():
+    name = request.args.get("name", "Guest")
+    return f"Hello {name}"
 
-# string converter
-@app.route("/user/<string:name>")
-def user_name(name):
-    return f"User Name: {name}"
 
-# path converter
-@app.route("/files/<path:file_path>")
-def files(file_path):
-    return file_path
-
-# UUID converter (use for large unique id)
-@app.route("/student/<uuid:user_id>")
-def student(user_id):
-    return str(user_id)
-
+# Multiple Query Parameters
+@app.route("/school")
+def school():
+    school_name = request.args.get("School_Name", "High School")
+    course = request.args.get("Course_Name", "Unknown")
+    return f"{school_name} is offering {course} course."
 
 if __name__ == '__main__':
     app.run(debug=True)
