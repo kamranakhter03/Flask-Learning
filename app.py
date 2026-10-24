@@ -1,5 +1,4 @@
 from flask import Flask, request
-from uuid import UUID
 
 app = Flask(__name__)
 
