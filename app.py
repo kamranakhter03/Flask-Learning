@@ -5,19 +5,21 @@ app = Flask(__name__)
 # Pass single & multiple Variable
 @app.route("/")
 def home():
-    name="Kamran Akhter"
-    course="Data Science"
-    city = "Delhi"
-    age = 23
+    first_name="Kamran"
+    last_name="Akhter"
+    course_name="Data Science"
+    city_name = "Delhi"
+    skills = ["Python", "SQL", "Flask", "ML", "DL"]
+    student_age = 23
+    course_fee = 500
     return render_template("index.html", 
-                           name=name,
-                           course=course,
-                           city=city,
-                           age=age)
-
-@app.route("/<student_name>")
-def name(student_name):
-    return render_template("index.html", name=student_name)
+                        f_name=first_name,
+                        l_name=last_name,
+                        course=course_name,
+                        city=city_name,
+                        age=student_age,
+                        fee=course_fee,
+                        skills_set=skills)
 
 if __name__ == "__main__":
     app.run(debug=True)
